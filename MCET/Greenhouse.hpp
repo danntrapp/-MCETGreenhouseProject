@@ -3,6 +3,7 @@
 #include "Photoresistor.hpp"
 #include "MotionSens.hpp"
 #include "DHT11.hpp"
+#include "ScreenModule.hpp"
 namespace GreenhouseConsts {
     const int photoResPin = A0;
     const int thermPin = A1;
@@ -51,7 +52,7 @@ class Greenhouse {
         Serial.println(static_cast<int>(m_therm.readTemperatureF()));
 
         Serial.println();
-        Serial.println();
+        Serial.println(); 
 
         Serial.print("Pct bright: ");
         Serial.println(m_photoRes.percentBright());

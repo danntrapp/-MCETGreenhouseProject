@@ -37,8 +37,8 @@ public:
                 m_state = WAIT_INTERVAL;
             }
             else if (m_dataReady) {
-                m_newSample = true;    // ✅ new sample available
-                m_lastError = false;   // ✅ no error
+                m_newSample = true;    
+                m_lastError = false;   
                 m_dataReady = false;
                 m_state = WAIT_INTERVAL;
             }

@@ -3,7 +3,7 @@
 #include <math.h>
 class VariableResistor {
     protected:
-    const int ADCMax = 1023;
+    const uint16_t ADCMax = 1023;
     public:
 
     VariableResistor(uint8_t pin, float referenceRes) : m_pin(pin), m_referenceRes(referenceRes) {}
