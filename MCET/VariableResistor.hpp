@@ -1,7 +1,7 @@
 #pragma once
-#include <Arduino.h>
+#include "ISensor.hpp"
 #include <math.h>
-class VariableResistor {
+class VariableResistor : public ISensor {
     protected:
     const uint16_t ADCMax = 1023;
     public:

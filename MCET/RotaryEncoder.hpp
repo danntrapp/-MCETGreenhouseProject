@@ -1,3 +1,4 @@
+#pragma once
 #include "CounterHelper.hpp"
 #include <Arduino.h>
 
@@ -23,14 +24,12 @@ public:
     }
 
     void updateRot() {
-        int swState = digitalRead(m_swPin);
-        if (swState == LOW) {
+        if (clickPressed()) 
             m_counter.reset();
-        }
 
         currentState = digitalRead(m_clkPin);
 
-        // Detect rising edge on CLK
+        
         if ((prevState == LOW) && (currentState == HIGH)) {
             if (digitalRead(m_dtPin) == HIGH) {
                 m_counter.decrement();  // Counter-clockwise

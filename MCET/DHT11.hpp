@@ -1,7 +1,8 @@
 #pragma once
+#include "ISensor.hpp"
 #include <Arduino.h>
 
-class DHT11 {
+class DHT11 : public ISensor{
 public:
     static constexpr unsigned long READ_INTERVAL_MS = 1500ul;
     static constexpr unsigned long TIMEOUT_MS       = 50ul;
@@ -131,6 +132,21 @@ public:
             break;
         }
     }
+
+    String toString() {
+        this->update();
+        String tempUnit = TEMP_UNIT ? " °C" : " °F";
+        int tempVal = TEMP_UNIT ? static_cast<int>(temperatureFloat()) 
+                    : static_cast<int>(convertCtoF(temperatureFloat()));
+
+        int humVal = static_cast<int>(humidityFloat());
+        String humUnit = "% Humidity";
+
+        String result = String(tempVal) + tempUnit + " | " + String(humVal) + humUnit;
+        return result;
+}
+
+  const char* name() const override { return "DHT11 Temp & Humidity Sensor";}
 
 private:
     enum State { WAIT_INTERVAL = 0, AWAIT_DATA };

@@ -1,5 +1,6 @@
 #pragma once
 #include "VariableResistor.hpp"
+#include <string.h>
 
 class Thermistor : public VariableResistor {
 public:
@@ -25,12 +26,15 @@ public:
     return (C * 9.0f / 5.0f) + 32.0f;
   }
 
-  std::string toString(bool c) {
-    std::string unit = c ? " Degrees Celsius" : " Degrees Fahrenheit";
-    auto val = c ? static_cast<int>(readTemperatureC()) : static_cast<int>(readTemperatureF());
-    std::string ret = static_cast<std::string>(val) + c;
+  String toString() override {
+    String unit = TEMP_UNIT ? " Degrees Celsius" : " Degrees Fahrenheit";
+    auto val = TEMP_UNIT ? static_cast<int>(readTemperatureC()) : static_cast<int>(readTemperatureF());
+    auto ret = static_cast<String>(val) + unit;
     return ret;
   }
+
+  const char* name() const override { return "Thermistor"; }
+
 private:
-  float m_beta;  // Beta constant (e.g., 3950)
+  float m_beta;  // Beta constant
 };
