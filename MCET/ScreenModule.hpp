@@ -18,9 +18,9 @@ class ScreenModule {
         ISensor* sens = m_gh.getSens(index);
 
         m_lcd.setCursor(0, 1);
-        m_lcd.print(sens.name());
+        m_lcd.print(sens->name());
         m_lcd.setCursor(1, 1);
-        m_lcd.print(sens.toString());
+        m_lcd.print(sens->toString());
     }
     
 

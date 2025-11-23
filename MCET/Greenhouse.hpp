@@ -11,14 +11,15 @@ namespace GreenhouseConsts {
     const int dhtPin = 49;
     const int motionSensPin = 40;
 
-    const float referenceRes = 10000.0;
+    const float photoReferenceRes = 2000.0;
+    const float thermReferenceRes = 10000.0;
     const float b = 3926.07;
 }
 class Greenhouse {
   public:
 
-  Greenhouse() : m_photoRes(GreenhouseConsts::photoResPin, GreenhouseConsts::referenceRes),
-                 m_therm(GreenhouseConsts::thermPin, GreenhouseConsts::referenceRes, GreenhouseConsts::b),
+  Greenhouse() : m_photoRes(GreenhouseConsts::photoResPin, GreenhouseConsts::photoReferenceRes),
+                 m_therm(GreenhouseConsts::thermPin, GreenhouseConsts::thermReferenceRes, GreenhouseConsts::b),
                  m_dht(GreenhouseConsts::dhtPin),
                  m_motionSens(GreenhouseConsts::motionSensPin) 
   {
@@ -36,7 +37,7 @@ class Greenhouse {
 
   ISensor* getSens(int index) { return m_sensors[index]; }
 
-  int numSensors() { return sizeof(m_sensors) / sizeof(m_sensors[0]); 
+  int numSensors() { return sizeof(m_sensors) / sizeof(m_sensors[0]);  }
 
 
 

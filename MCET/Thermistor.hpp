@@ -8,7 +8,7 @@ public:
     : VariableResistor(pin, referenceRes), m_beta(beta) {}
 
   float readTemperatureC() const {
-    float R = readResistance();
+    float R = this->readResistance();
     if (!isfinite(R)) return NAN;  //if reading infinity, return NOT A NUMBER
     //reference vals
     const float T0 = 298.15f;  // 25°C in Kelvin

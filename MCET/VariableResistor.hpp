@@ -8,7 +8,7 @@ class VariableResistor : public ISensor {
 
     VariableResistor(uint8_t pin, float referenceRes) : m_pin(pin), m_referenceRes(referenceRes) {}
 
-    float readResistance() {
+    float readResistance() const {
         float input = analogRead(m_pin);   // read ADC as float
         float ratio = ((float)ADCMax / input) - 1.0f;
         float res = m_referenceRes * ratio;

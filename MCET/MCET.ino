@@ -1,9 +1,8 @@
-#pragma once
-#include "ScreenModule.hpp"
 #include "Greenhouse.hpp"
+#include "ScreenModule.hpp"
 
-
-const uint8_t dtPin = 40;
+//73.4 F 10750.51 ohm
+//88 f 6634.15 
 const uint8_t swPin = 38;
 const uint8_t clkPin = 42;
 
@@ -11,13 +10,13 @@ const uint8_t rsPin = 1;
 const uint8_t ePin = 2;
 const uint8_t dPins[] = {4, 5, 6, 7};
 
-auto gh = Greenhouse();
-ScreenModule sM(rsPin, ePin, dPins, clkPin, dtPin, swPin, &gh);
+Greenhouse gh = Greenhouse::Greenhouse();
+ScreenModule sm = ScreenModule::ScreenModule(rsPin, ePin, dPins, clkPin, dtPin, swPin, gh);
 void setup() {
   Serial.begin(9600);
-  sM.begin();
+  sm.begin();
   gh.begin();
 }
 void loop() {
-   sM.updateDisplay();
+  sm.updateDisplay();
 }
